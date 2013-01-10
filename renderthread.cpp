@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "renderthread.h"
 
 RenderThread::RenderThread(QObject *parent) :
@@ -18,5 +20,18 @@ RenderThread::~RenderThread()
 }
 
 void RenderThread::render(void){
+    qDebug() << "render";
+}
 
+void RenderThread::run(void){
+    forever {
+        mutex.lock();
+        mutex.unlock();
+
+        mutex.lock();
+        if (!restart)
+            condition.wait(&mutex);
+        restart = false;
+        mutex.unlock();
+    }
 }

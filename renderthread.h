@@ -5,8 +5,9 @@
 #include <QMutex>
 #include <QWaitCondition>
 #include <QSize>
+#include <QImage>
 
-class RenderThread : public QTread
+class RenderThread : public QThread
 {
     Q_OBJECT
 public:
@@ -22,19 +23,10 @@ protected:
     void run();
 
 private:
-    uint rgbFromWaveLength(double wave);
-
     QMutex mutex;
     QWaitCondition condition;
-    double centerX;
-    double centerY;
-    double scaleFactor;
-    QSize resultSize;
     bool restart;
     bool abort;
-
-    enum { ColormapSize = 512 };
-    uint colormap[ColormapSize];
 };
 
 #endif // RENDERTHREAD_H

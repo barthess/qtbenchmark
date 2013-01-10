@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "renderthread.h"
+
 namespace Ui {
 class Widget;
 }
@@ -15,8 +17,12 @@ public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
     
+private slots:
+    void updatePixmap(const QImage &image, double scaleFactor);
+
 private:
     Ui::Widget *ui;
+    RenderThread thread;
 };
 
 #endif // WIDGET_H

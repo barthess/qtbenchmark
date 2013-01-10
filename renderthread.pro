@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui thread
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = benchmark
+TARGET = offscreen
 TEMPLATE = app
 
 
